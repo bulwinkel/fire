@@ -1,4 +1,5 @@
 rootProject.name = 'fire'
 include 'fire-core'
 include 'fire-core-jvm'
+include 'fire-core-js'
 

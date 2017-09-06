@@ -1,11 +1,4 @@
-group 'com.bulwinkel'
-version '1.0-SNAPSHOT'
-
 apply plugin: 'kotlin-platform-common'
-
-repositories {
-  mavenCentral()
-}
 
 dependencies {
   compile deps.kotlin_stdlib_common

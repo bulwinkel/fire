@@ -6,8 +6,9 @@ import kotlin.test.*
 class FireTests {
 
   @Test fun vShouldPrint() {
-    v { "VERBOSE" }
-    v("VERBOSE_TEST") { "this is a verbose message" }
+    val fire = Fire
+    fire.v { "VERBOSE" }
+    fire.v("VERBOSE_TEST") { "this is a verbose message" }
     assertTrue { true }
   }
 }
