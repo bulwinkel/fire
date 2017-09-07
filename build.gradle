@@ -22,13 +22,13 @@ allprojects {
 
 ext {
   deps = [
-    junit: "junit:junit:4.12",
-    kotlin_stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-    kotlin_stdlib_jre8: "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version",
-    kotlin_stdlib_common: "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version",
-    kotlin_stdlib_js: "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version",
-    kotlin_test: "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
-    kotlin_test_common: "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version",
-    kotlin_test_js: "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version",
+      junit:                  "junit:junit:4.12",
+      kotlin_stdlib:          "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+      kotlin_stdlib_js:       "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version",
+      kotlin_stdlib_jre8:     "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version",
+      kotlin_stdlib_common:   "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version",
+      kotlin_test:            "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+      kotlin_test_js:         "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version",
+      kotlin_test_common:     "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version",
   ]
 }
