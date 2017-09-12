@@ -1,13 +1,13 @@
-package fire.log.core
+package fire.log
 
-import fire.log.core.Intensity.ASSERT
-import fire.log.core.Intensity.DEBUG
-import fire.log.core.Intensity.ERROR
-import fire.log.core.Intensity.INFO
-import fire.log.core.Intensity.VERBOSE
-import fire.log.core.Intensity.WARN
+import fire.log.Intensity.ASSERT
+import fire.log.Intensity.DEBUG
+import fire.log.Intensity.ERROR
+import fire.log.Intensity.INFO
+import fire.log.Intensity.VERBOSE
+import fire.log.Intensity.WARN
 
-enum class Intensity(value: Int) {
+enum class Intensity(val value: Int) {
   VERBOSE(2),
   DEBUG(3),
   INFO(4),

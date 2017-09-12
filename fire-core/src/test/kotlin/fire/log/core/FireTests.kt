@@ -1,5 +1,6 @@
 package fire.log.core
 
+import fire.log.Fire
 import org.junit.Test
 import kotlin.test.*
 

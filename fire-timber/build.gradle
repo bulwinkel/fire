@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+
+    versionCode 1
+    versionName rootProject.version
+  }
+}
+
+dependencies {
+  compile project(":fire-core-jvm")
+  compile deps.kotlin_stdlib
+  compile 'com.jakewharton.timber:timber:4.5.1'
+}
