@@ -20,7 +20,7 @@ interface Logger {
   fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: String)
 }
 
-object PrintlnLogger : Logger {
+class PrintlnLogger : Logger {
 
   private val logLevelSuffix: Map<Intensity, String> = mapOf(
       VERBOSE to "V",
@@ -44,6 +44,10 @@ object Fire {
 
   fun add(log: Logger) {
     logs += log
+  }
+
+  fun removeAllLogs() {
+    logs = emptyList()
   }
 
   inline fun v(tag: String? = null, t: Throwable? = null, message: ()->String) {
