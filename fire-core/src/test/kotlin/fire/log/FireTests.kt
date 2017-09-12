@@ -10,7 +10,7 @@ class FireTests {
     Fire.removeAllLogs()
   }
 
-  @Test fun `add log and remove logs`() {
+  @Test fun `should add log and remove logs`() {
     assertTrue("logs size should be 0") { Fire.logs.isEmpty() }
     for (i in 1..100) {
       Fire.add(PrintlnLogger())
