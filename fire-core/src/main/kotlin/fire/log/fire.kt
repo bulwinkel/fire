@@ -16,22 +16,23 @@ enum class Intensity(val value: Int) {
   ASSERT(7)
 }
 
-interface Logger {
-  fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: String)
-}
+//interface Log {
+//  fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: String)
+//}
 
-class PrintlnLogger : Logger {
+typealias Log = (intensity: Intensity, tag:String, t: Throwable?, message: String) -> Unit
 
-  private val logLevelSuffix: Map<Intensity, String> = mapOf(
-      VERBOSE to "V",
-      DEBUG to "D",
-      INFO to "I",
-      WARN to "W",
-      ERROR to "E",
-      ASSERT to "WFT"
-  )
+private val logLevelSuffix: Map<Intensity, String> = mapOf(
+    VERBOSE to "V",
+    DEBUG to "D",
+    INFO to "I",
+    WARN to "W",
+    ERROR to "E",
+    ASSERT to "WFT"
+)
 
-  override fun log(intensity: Intensity, tag: String, t: Throwable?, message: String) {
+val printLnLog : Log get() {
+  return { intensity, tag, t, message ->
     //todo do something with the throwable
     println("${logLevelSuffix[intensity]}/$tag: $message")
   }
@@ -39,10 +40,10 @@ class PrintlnLogger : Logger {
 
 object Fire {
 
-  var logs: List<Logger> = emptyList()
+  var logs: List<Log> = emptyList()
     private set
 
-  fun add(log: Logger) {
+  fun add(log: Log) {
     logs += log
   }
 
@@ -77,7 +78,7 @@ object Fire {
   inline fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: ()->String) {
     if (logs.isNotEmpty()) {
       val msg = message()
-      logs.forEach { it.log(intensity, tag, t, msg) }
+      logs.forEach { it(intensity, tag, t, msg) }
     }
   }
 }

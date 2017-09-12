@@ -14,7 +14,7 @@ class FireTests {
   @Test fun `should add log and remove logs`() {
     assertTrue("logs size should be 0") { Fire.logs.isEmpty() }
     for (i in 1..100) {
-      Fire.add(PrintlnLogger())
+      Fire.add(printLnLog)
       assertTrue("logs size doesn't match index") { Fire.logs.size == i }
     }
     Fire.removeAllLogs()
@@ -23,12 +23,9 @@ class FireTests {
 
   @Test fun `v should call log with correct intensity`() {
 
-    val testLog = object : Logger {
-      override fun log(intensity: Intensity, tag: String, t: Throwable?, message: String) {
-        assertTrue { intensity == VERBOSE }
-      }
+    Fire.add { intensity, tag, t, message ->
+      assertTrue { intensity == VERBOSE }
     }
-    Fire.add(testLog)
     Fire.v { "message" }
   }
 }
