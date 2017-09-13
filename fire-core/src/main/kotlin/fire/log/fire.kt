@@ -48,33 +48,33 @@ object Fire {
   }
 
   inline fun v(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = VERBOSE, tag = tag ?: "", t = t, message = message)
+    log(intensity = VERBOSE, tag = tag, t = t, message = message)
   }
 
   inline fun d(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = DEBUG, tag = tag ?: "", t = t, message = message)
+    log(intensity = DEBUG, tag = tag, t = t, message = message)
   }
 
   inline fun i(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = INFO, tag = tag ?: "", t = t, message = message)
+    log(intensity = INFO, tag = tag, t = t, message = message)
   }
 
   inline fun w(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = WARN, tag = tag ?: "", t = t, message = message)
+    log(intensity = WARN, tag = tag, t = t, message = message)
   }
 
   inline fun e(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = ERROR, tag = tag ?: "", t = t, message = message)
+    log(intensity = ERROR, tag = tag, t = t, message = message)
   }
 
   inline fun wtf(tag: String? = null, t: Throwable? = null, message: ()->String) {
-    log(intensity = ASSERT, tag = tag ?: "", t = t, message = message)
+    log(intensity = ASSERT, tag = tag, t = t, message = message)
   }
 
-  inline fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: ()->String) {
+  inline fun log(intensity: Intensity, tag:String? = null, t: Throwable? = null, message: ()->String) {
     if (logs.isNotEmpty()) {
       val msg = message()
-      logs.forEach { it(intensity, tag, t, msg) }
+      logs.forEach { it(intensity, tag ?: "", t, msg) }
     }
   }
 }

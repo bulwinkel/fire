@@ -8,6 +8,7 @@ import fire.log.Intensity.VERBOSE
 import fire.log.Intensity.WARN
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 fun Fire.assertCorrectIntensity(correctIntensity: Intensity) {
@@ -66,6 +67,78 @@ class FireTests {
   }
 
   //endregion
+
+  @Test fun `message() block should not be called if no logs in fire`() {
+    var messageBlockCalled = false
+    Fire.v {
+      messageBlockCalled = true
+      ""
+    }
+    Fire.d {
+      messageBlockCalled = true
+      ""
+    }
+    Fire.i {
+      messageBlockCalled = true
+      ""
+    }
+    Fire.w {
+      messageBlockCalled = true
+      ""
+    }
+    Fire.e {
+      messageBlockCalled = true
+      ""
+    }
+    Fire.wtf {
+      messageBlockCalled = true
+      ""
+    }
+
+    Fire.log(ASSERT) {
+      messageBlockCalled = true
+      ""
+    }
+    assertFalse(messageBlockCalled)
+  }
+
+  @Test fun `message() block should be called if logs in fire`() {
+
+    var messageBlockCalled = false
+    val testMessage = "testMessage"
+    Fire.add { _, _, _, message -> assertTrue { message == testMessage } }
+
+    Fire.v {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.d {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.i {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.w {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.e {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.wtf {
+      messageBlockCalled = true
+      testMessage
+    }
+    Fire.log(ASSERT) {
+      messageBlockCalled = true
+      testMessage
+    }
+
+    assertTrue(messageBlockCalled)
+  }
 
 
 }
