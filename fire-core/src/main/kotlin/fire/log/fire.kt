@@ -16,10 +16,6 @@ enum class Intensity(val value: Int) {
   ASSERT(7)
 }
 
-//interface Log {
-//  fun log(intensity: Intensity, tag:String, t: Throwable? = null, message: String)
-//}
-
 typealias Log = (intensity: Intensity, tag:String, t: Throwable?, message: String) -> Unit
 
 private val logLevelSuffix: Map<Intensity, String> = mapOf(
