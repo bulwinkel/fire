@@ -2,22 +2,9 @@ apply plugin: 'kotlin'
 
 sourceSets {
   final def coreSourcesPath = file('../fire-core/src').path
-  main {
-    java {
-      srcDirs = ["$coreSourcesPath/main/kotlin"]
-    }
-    resources {
-      srcDirs = ["$coreSourcesPath/main/resources"]
-    }
-  }
-  test {
-    java {
-      srcDirs = ["$coreSourcesPath/test/kotlin"]
-    }
-    resources {
-      srcDirs = ["$coreSourcesPath/test/resources"]
-    }
-  }
+
+  main.kotlin.srcDirs += "$coreSourcesPath/main/kotlin"
+  test.java.srcDirs += "$coreSourcesPath/test/kotlin"
 }
 
 dependencies {

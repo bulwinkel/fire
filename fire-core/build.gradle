@@ -1,10 +1,10 @@
-apply plugin: 'kotlin-platform-common'
-
-dependencies {
-  compile deps.kotlin_stdlib_common
-  testCompile deps.junit
-  testCompile deps.kotlin_test_common
-}
+//apply plugin: 'kotlin-platform-common'
+//
+//dependencies {
+//  compile deps.kotlin_stdlib_common
+//  testCompile deps.junit
+//  testCompile deps.kotlin_test_common
+//}
 
 //compileKotlin {
 //    kotlinOptions.jvmTarget = "1.8"
