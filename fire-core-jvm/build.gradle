@@ -1,4 +1,10 @@
+plugins {
+  id "com.jfrog.bintray" version "1.7.3"
+}
+
 apply plugin: 'kotlin'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 
 sourceSets {
   final def coreSourcesPath = file('../fire-core/src').path
@@ -8,7 +14,7 @@ sourceSets {
 }
 
 dependencies {
-  compile deps.kotlin_stdlib
+  implementation deps.kotlin_stdlib
   testCompile deps.kotlin_test
   testCompile deps.junit
 }
@@ -18,4 +24,49 @@ compileKotlin {
 }
 compileTestKotlin {
   kotlinOptions.jvmTarget = "1.6"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives sourcesJar
+}
+
+publishing {
+  publications {
+    fireCoreJvm(MavenPublication) {
+      from components.java
+      artifact sourcesJar
+      artifactId = 'fire-core-jvm'
+    }
+  }
+}
+
+// load bintray credentials
+final Properties properties = new Properties()
+final File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+properties.load(propFile.newDataInputStream())
+println("properties.propertyNames() = ${properties.propertyNames().collect { "$it" }}")
+
+bintray {
+  user = properties.getProperty("bintray.user")
+  key = properties.getProperty("bintray.apikey")
+  publications = ['fireCoreJvm']
+  pkg {
+    repo = 'fire'
+    name = 'fire-core-jvm'
+    licenses = ['MIT']
+    vcsUrl = 'https://github.com/bulwinkel/fire'
+
+    version {
+      name = project.version
+//      desc = 'Gradle Bintray Plugin 1.0 final'
+//      released  = new Date()
+//      vcsTag = '1.3.0'
+//      attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+    }
+  }
 }
